@@ -7,12 +7,14 @@ import javax.swing.JFrame;
 import ui.Diagnosis;
 import ui.DiseaseToDepartment;
 import ui.HelpDesk;
+import ui.Main_ui;
 import ui.Treatment;
 
 public class Main {
 	
+	public static Main_ui main_ui = new Main_ui();
+	
 	public static HelpDesk helpDesk = new HelpDesk();
-	public static Diagnosis diagnosis = new Diagnosis();
 	public static DiseaseToDepartment diseasetodepartment = new DiseaseToDepartment();
 	public static Treatment treatment = new Treatment();
 	
@@ -20,11 +22,7 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					helpDesk.setVisible(false);
-					diagnosis.setVisible(true);
-					diseasetodepartment.setVisible(false);
-					treatment.setVisible(false);
-					
+					main_ui.setVisible(true);
 			        
 			        
 			        

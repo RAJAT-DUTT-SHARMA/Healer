@@ -55,7 +55,6 @@ public class Treatment extends JFrame {
 
 	public void SetStart() {
 		this.setVisible(true);
-		Main.diagnosis.setVisible(false);
 		Main.diseasetodepartment.setVisible(false);
 		Main.helpDesk.setVisible(false);
 		String[] diseases = {"Dehydration","chicken pox","measles"};

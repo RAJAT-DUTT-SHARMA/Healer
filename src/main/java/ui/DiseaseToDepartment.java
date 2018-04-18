@@ -92,7 +92,6 @@ public class DiseaseToDepartment extends JFrame {
 
 	public void SetStart() {
 		this.setVisible(true);
-		Main.diagnosis.setVisible(false);
 		Main.helpDesk.setVisible(false);
 		for (String a : diseases) {
 			RuleRunningFunction.insert(new Disease(a));

@@ -75,7 +75,6 @@ public class HelpDesk extends JFrame {
 		btnCheckUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.helpDesk.setVisible(false);
-				Main.diagnosis.setVisible(true);
 				Main.diseasetodepartment.setVisible(false);
 
 			}
@@ -116,7 +115,6 @@ public class HelpDesk extends JFrame {
 
 	public void SetStart() {
 		this.setVisible(true);
-		Main.diagnosis.setVisible(false);
 		Main.diseasetodepartment.setVisible(false);
 	}
 	
