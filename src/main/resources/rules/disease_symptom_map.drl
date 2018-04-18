@@ -1,0 +1,12 @@
+//created on: Apr 18, 2018
+package disease
+
+//list any import classes here.
+import beans.DiseasePojo;
+import static services.HelperFunctions.addDisease;
+
+//declare any global variables here
+
+
+
+

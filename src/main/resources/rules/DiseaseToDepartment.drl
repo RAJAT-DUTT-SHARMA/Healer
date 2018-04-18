@@ -1,0 +1,50 @@
+//created on: Apr 9, 2018
+package rule
+
+//list any import classes here.
+import models.Disease;
+import static services.HelperfunctionForDepartment.addDepartmentForDisease;
+
+//declare any global variables here
+
+
+
+rule "01"
+
+    when
+      	input: Disease(name == "Dehydration")
+    then
+        addDepartmentForDisease("Dehydration","Physician"); 
+end
+
+rule "02"
+
+    when
+      	input: Disease(name == "chicken pox")
+    then
+        addDepartmentForDisease("chicken pox","Physician"); 
+end
+
+rule "03"
+
+    when
+      	input: Disease(name == "measles")
+    then
+        addDepartmentForDisease("measles","Physician"); 
+end
+rule "04"
+
+    when
+      	input: Disease(name == "whooping cough")
+    then
+        addDepartmentForDisease("whooping cough","Gastroentrologist"); 
+end
+rule "05"
+
+    when
+      	input: Disease(name == "food poisoning")
+    then
+        addDepartmentForDisease("food poisoning","Gastroentrologist"); 
+end
+
+

@@ -1,0 +1,29 @@
+//created on: Apr 9, 2018
+package rules
+
+//list any import classes here.
+
+
+
+//declare any global variables here
+
+
+
+
+rule "Your First Rule"
+
+    when
+        String( this == "go2" )
+    then
+        System.out.println("done");
+
+end
+
+rule "Your Second Rule"
+    //include attributes such as "salience" here...
+    when
+        //conditions
+    then
+        //actions
+
+end
