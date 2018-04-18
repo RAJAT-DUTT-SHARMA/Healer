@@ -102,19 +102,13 @@ public class Main_ui extends JFrame {
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 		
 		JPanel panel = new Diagnosis();
-		tabbedPane.addTab("Symtom", null, panel, null);
+		tabbedPane.addTab("Search through Symptom", null, panel, null);
 		
 		
 		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("Disease", null, panel_1, null);
+		tabbedPane.addTab("Search through Disease", null, panel_1, null);
 		
 		JPanel panel_3 = new JPanel();
-		tabbedPane.addTab("Doctor", null, panel_3, null);
+		tabbedPane.addTab("Search through Specialist", null, panel_3, null);
 	}
-
-
-	
-	
-	
-	
 }

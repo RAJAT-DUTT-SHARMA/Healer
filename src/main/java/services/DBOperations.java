@@ -108,4 +108,51 @@ public class DBOperations {
         }
         return lst;
     }
+    
+    public ArrayList<String> getAllSpecialist(){
+    	String objBean;
+        ArrayList<String> lst = null;
+        
+        try (Connection con = ConnectDB.connect()
+            	) {
+        	PreparedStatement pstmt = con.prepareStatement("select * from specialist;");
+            ResultSet rs = pstmt.executeQuery();
+            lst = new ArrayList<>();
+            //rs.first();
+            int i=0;
+            while (rs.next()) {
+                objBean = rs.getString("name");
+                lst.add(objBean);
+                i++;
+            }
+            System.out.println("rows retrieved : "+i );
+        } catch (Exception e) {
+            System.out.println("in getAllDisease()" + e);
+        }
+        return lst;
+    }
+    
+    public ArrayList<String> getRelatedSpecialist(String disease) {
+        String objBean;
+        ArrayList<String> lst = null;
+        
+        try (Connection con = ConnectDB.connect()
+            	) {
+        	PreparedStatement pstmt = con.prepareStatement("select * from disease_specialist_map,disease,specialist where disease.disease='"+disease+"' and disease.disease_id=disease_specialist_map.disease_id and specialist.specialist_id=disease_specialist_map.specialist_id;");
+            ResultSet rs = pstmt.executeQuery();
+            lst = new ArrayList<>();
+            //rs.first();
+            int i=0;
+            while (rs.next()) {
+                objBean = rs.getString("name");
+                lst.add(objBean);
+                i++;
+            }
+            System.out.println("rows retrieved : "+i + lst.toString());
+        } catch (Exception e) {
+            System.out.println("in getRelatedSymptom()" + e);
+        }
+        return lst;
+    }
+    
 }
