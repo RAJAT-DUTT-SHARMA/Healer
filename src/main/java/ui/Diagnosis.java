@@ -80,7 +80,6 @@ public class Diagnosis extends JPanel{
 		dbOps=new DBOperations();
 		symptoms=dbOps.getAllSymptom();
 		symptomInput=new ArrayList<>();
-		RuleGenerator.generateSymtomToDiseaseRules();
 	       
 		initComponents();
 	}
@@ -183,7 +182,7 @@ public class Diagnosis extends JPanel{
 				// TODO Auto-generated method stub
 				
 				System.out.println( "Bootstrapping the Rule Engine ..." );
-				HelperFunctions.initializeMap();
+				
 		        
 		        for (String string : symptomInput) {
 		        	SymptomPojo pojo=new SymptomPojo(string);
@@ -196,7 +195,7 @@ public class Diagnosis extends JPanel{
 		        symptomInput=new ArrayList<>();
 		        top3diseases = new ArrayList<>();
 		        printTop3Disease();
-		        Main.diseasetodepartment.diseases = top3diseases;
+		        
 		        btnGoForDepartment.setEnabled(true);
 		    	
 			}
@@ -210,9 +209,7 @@ public class Diagnosis extends JPanel{
         btnGoForDepartment.setBounds(337, 446, 425, 30);
         btnGoForDepartment.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		Main.helpDesk.btnNewButton.setEnabled(true);
-        		Main.helpDesk.setVisible(true);
-				Main.diseasetodepartment.setVisible(false);
+        		
         	}
         });
         predictedDieseases=new TextArea();

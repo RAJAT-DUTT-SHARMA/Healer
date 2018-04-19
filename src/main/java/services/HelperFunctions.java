@@ -14,6 +14,8 @@ public class HelperFunctions {
 	}
 	
 	public static void addDisease(String disease) {
+		System.out.println("addDisease"+disease);
+		
 		if(diseaseConfidenceMap.containsKey(disease)) {
 			int newConfidence=diseaseConfidenceMap.get(disease).intValue()+1;
 			diseaseConfidenceMap.replace(disease,new Integer(newConfidence) );

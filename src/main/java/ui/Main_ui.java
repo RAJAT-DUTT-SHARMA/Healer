@@ -105,7 +105,8 @@ public class Main_ui extends JFrame {
 		tabbedPane.addTab("Search through Symptom", null, panel, null);
 		
 		
-		JPanel panel_1 = new JPanel();
+		JPanel panel_1 = new SearchThroughDisease();
+//		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Search through Disease", null, panel_1, null);
 		
 		JPanel panel_3 = new JPanel();

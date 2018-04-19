@@ -2,12 +2,9 @@
 package rules
 
 //list any import classes here.
-import beans.SpecialistPojo;
-import static services.HelperfunctionForDepartment.addDiseaseForDepartment;
+import beans.DiseasePojo;
+import static services.HelperFunctionForTest.addTestForDisease;
 
 
 //declare any global variables here
-
-
-
 

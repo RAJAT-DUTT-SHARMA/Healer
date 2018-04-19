@@ -16,7 +16,7 @@ public class RuleGenerator {
 	private static final String method = "addDisease";
 	private static final String method2 = "addDepartmentForDisease";
 	private static final String method3 = "addDiseaseForDepartment";
-	
+	private static final String method4 = "addTestForDisease";
 
 	/*
 	 * public static void main(String []args) { //for testing only
@@ -77,14 +77,14 @@ public class RuleGenerator {
 		}
 		return actions.toString();
 	}
-	
+
 	public static String writeparams(String[] k) {
-		String s="";
-		s+= k[0];
-		for(int i=1; i< k.length; i++) {
-			s+= "\",\""+k[i];
+		String s = "";
+		s += k[0];
+		for (int i = 1; i < k.length; i++) {
+			s += "\",\"" + k[i];
 		}
-		
+
 		return s;
 	}
 
@@ -176,16 +176,13 @@ public class RuleGenerator {
 		for (String disease : listDiseases) {
 			actionParams = new ArrayList<>();
 			listSpecialists = ops.getRelatedSpecialist(disease);
-			for(String i: listSpecialists) {
+			for (String i : listSpecialists) {
 				String[] params = new String[2];
 				params[0] = disease;
 				params[1] = i;
 				actionParams.add(params);
 			}
-			
-			
-			
-			
+
 			Condition condition = new Condition();
 			condition.setField("disease");
 			condition.setOperator(Operator.EQUAL_TO);
@@ -194,17 +191,18 @@ public class RuleGenerator {
 			listConditions = new ArrayList<>();
 			listConditions.add(condition);
 
-			rule = ruleGenerator2(disease, DiseasePojo.class.getName(), listConditions, actionParams, method2);
+			rule = ruleGenerator2("ToSpecialist" + disease, DiseasePojo.class.getName(), listConditions, actionParams,
+					method2);
 
 			writeToDRL(rule, Properties.drlFileDisDept);
 		}
 	}
 
-	
 	public static void generateSpecialistToDisease() {
 		DBOperations ops = new DBOperations();
 		ArrayList<String> listDiseases;
-		ArrayList<String> listSpecialists= ops.getAllSpecialist();;
+		ArrayList<String> listSpecialists = ops.getAllSpecialist();
+		;
 		ArrayList<String[]> actionParams;
 		ArrayList<Condition> listConditions;
 		String rule;
@@ -212,16 +210,13 @@ public class RuleGenerator {
 		for (String specialist : listSpecialists) {
 			actionParams = new ArrayList<>();
 			listDiseases = ops.getDiseaseForSpecialist(specialist);
-			for(String i: listDiseases) {
+			for (String i : listDiseases) {
 				String[] params = new String[2];
 				params[0] = specialist;
 				params[1] = i;
 				actionParams.add(params);
 			}
-			
-			
-			
-			
+
 			Condition condition = new Condition();
 			condition.setField("specialist");
 			condition.setOperator(Operator.EQUAL_TO);
@@ -230,9 +225,44 @@ public class RuleGenerator {
 			listConditions = new ArrayList<>();
 			listConditions.add(condition);
 
-			rule = ruleGenerator2(specialist, SpecialistPojo.class.getName(), listConditions, actionParams, method3);
+			rule = ruleGenerator2("ToDisease"+specialist, SpecialistPojo.class.getName(), listConditions,
+					actionParams, method3);
 
 			writeToDRL(rule, Properties.drlFileDeptDis);
+		}
+	}
+
+	public static void generateDiseaseToTest() {
+		DBOperations ops = new DBOperations();
+		ArrayList<String> listDiseases = ops.getAllDiseases();
+		ArrayList<String> listTests;
+		ArrayList<String[]> actionParams;
+		ArrayList<Condition> listConditions;
+		String rule;
+
+		for (String disease : listDiseases) {
+			actionParams = new ArrayList<>();
+			listTests = ops.getTestForDisease(disease);
+			System.out.println(listTests.toString());
+			for (String i : listTests) {
+				String[] params = new String[2];
+				params[0] = disease;
+				params[1] = i;
+				actionParams.add(params);
+			}
+
+			Condition condition = new Condition();
+			condition.setField("disease");
+			condition.setOperator(Operator.EQUAL_TO);
+			condition.setValue(disease);
+
+			listConditions = new ArrayList<>();
+			listConditions.add(condition);
+
+			rule = ruleGenerator2("ToTest"+disease, DiseasePojo.class.getName(), listConditions,
+					actionParams, method4);
+
+			writeToDRL(rule, Properties.drlFileDisTest);
 		}
 	}
 	

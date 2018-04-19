@@ -15,6 +15,7 @@ public class HelperfunctionForDepartment {
 	}
 	
 	public static void addDepartmentForDisease(String disease, String department) {
+		System.out.println("adddepartmentfordisease"+department+" "+disease);
 		if(!DiseaseToDepartment.containsKey(disease)) {
 			department_names = new ArrayList<>();
 			department_names.add(department);
@@ -31,12 +32,17 @@ public class HelperfunctionForDepartment {
 	}
 	
 	public static void addDiseaseForDepartment(String department, String disease) {
+		System.out.println("adddiseasefordepartment"+department+" "+disease);
 		if(!DiseaseToDepartment.containsKey(department)) {
 			disease_names = new ArrayList<>();
 			disease_names.add(disease);
+			System.out.println(department+" "+disease);
+			
 			DiseaseToDepartment.put(department, disease_names);
 		}
 		else {
+			System.out.println(department+" "+disease);
+			
 			DiseaseToDepartment.get(department).add(disease);
 		}
 	}

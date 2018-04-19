@@ -1,5 +1,5 @@
 //created on: Apr 18, 2018
-package disease
+package rules
 
 //list any import classes here.
 import beans.DiseasePojo;

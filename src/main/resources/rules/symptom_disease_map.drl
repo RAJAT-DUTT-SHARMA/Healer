@@ -1,5 +1,5 @@
 //created on: 8 Apr, 2018
-package symptoms_map
+package rules
 
 //list any import classes here.
 import beans.SymptomPojo;

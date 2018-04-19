@@ -63,6 +63,29 @@ public class DBOperations {
         return lst;
     }
     
+    
+    public ArrayList<String> getAllTests() {
+        String objBean;
+        ArrayList<String> lst = null;
+        
+        try (Connection con = ConnectDB.connect()
+            	) {
+        	PreparedStatement pstmt = con.prepareStatement("select * from tests;");
+            ResultSet rs = pstmt.executeQuery();
+            lst = new ArrayList<>();
+            //rs.first();
+            int i=0;
+            while (rs.next()) {
+                objBean = rs.getString("test");
+                lst.add(objBean);
+                i++;
+            }
+            System.out.println("rows retrieved : "+i );
+        } catch (Exception e) {
+            System.out.println("in getAllTests()" + e);
+        }
+        return lst;
+    }
    
     
     
@@ -180,5 +203,29 @@ public class DBOperations {
         }
         return lst;
     }
+    
+    public ArrayList<String> getTestForDisease(String disease) {
+        String objBean;
+        ArrayList<String> lst = null;
+        
+        try (Connection con = ConnectDB.connect()
+            	) {
+        	PreparedStatement pstmt = con.prepareStatement("select * from disease_to_test_map,disease,tests where disease.disease='"+disease+"' and disease.disease_id=disease_to_test_map.disease_id and tests.test_id=disease_to_test_map.test_id;");
+            ResultSet rs = pstmt.executeQuery();
+            lst = new ArrayList<>();
+            //rs.first();
+            int i=0;
+            while (rs.next()) {
+                objBean = rs.getString("test");
+                lst.add(objBean);
+                i++;
+            }
+            System.out.println("rows retrieved : "+i + lst.toString());
+        } catch (Exception e) {
+            System.out.println("in getTestForDisease()" + e);
+        }
+        return lst;
+    }
+    
     
 }
