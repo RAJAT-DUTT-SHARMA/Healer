@@ -15,5 +15,6 @@ public class Properties {
 	public static final String drlFileSympDis="/rules/symptom_disease_map.drl";
 	public static final String drlFileDisSymp="/rules/disease_symptom_map.drl";
 	public static final String drlFileDisDept="/rules/DiseaseToDepartment.drl";
+	public static final String drlFileDeptDis="/rules/DepartmentToDisease.drl";
 
 }

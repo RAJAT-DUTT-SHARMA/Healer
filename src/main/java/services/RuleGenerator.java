@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import beans.Condition;
 import beans.DiseasePojo;
 import beans.Operator;
+import beans.SpecialistPojo;
 import beans.SymptomPojo;
 import properties.Properties;
 
@@ -14,6 +15,8 @@ public class RuleGenerator {
 
 	private static final String method = "addDisease";
 	private static final String method2 = "addDepartmentForDisease";
+	private static final String method3 = "addDiseaseForDepartment";
+	
 
 	/*
 	 * public static void main(String []args) { //for testing only
@@ -197,4 +200,40 @@ public class RuleGenerator {
 		}
 	}
 
+	
+	public static void generateSpecialistToDisease() {
+		DBOperations ops = new DBOperations();
+		ArrayList<String> listDiseases;
+		ArrayList<String> listSpecialists= ops.getAllSpecialist();;
+		ArrayList<String[]> actionParams;
+		ArrayList<Condition> listConditions;
+		String rule;
+
+		for (String specialist : listSpecialists) {
+			actionParams = new ArrayList<>();
+			listDiseases = ops.getDiseaseForSpecialist(specialist);
+			for(String i: listDiseases) {
+				String[] params = new String[2];
+				params[0] = specialist;
+				params[1] = i;
+				actionParams.add(params);
+			}
+			
+			
+			
+			
+			Condition condition = new Condition();
+			condition.setField("specialist");
+			condition.setOperator(Operator.EQUAL_TO);
+			condition.setValue(specialist);
+
+			listConditions = new ArrayList<>();
+			listConditions.add(condition);
+
+			rule = ruleGenerator2(specialist, SpecialistPojo.class.getName(), listConditions, actionParams, method3);
+
+			writeToDRL(rule, Properties.drlFileDeptDis);
+		}
+	}
+	
 }

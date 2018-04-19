@@ -63,6 +63,9 @@ public class DBOperations {
         return lst;
     }
     
+   
+    
+    
     public ArrayList<String> getRelatedSymptom(String disease) {
         String objBean;
         ArrayList<String> lst = null;
@@ -151,6 +154,29 @@ public class DBOperations {
             System.out.println("rows retrieved : "+i + lst.toString());
         } catch (Exception e) {
             System.out.println("in getRelatedSymptom()" + e);
+        }
+        return lst;
+    }
+    
+    public ArrayList<String> getDiseaseForSpecialist(String specialist) {
+        String objBean;
+        ArrayList<String> lst = null;
+        
+        try (Connection con = ConnectDB.connect()
+            	) {
+        	PreparedStatement pstmt = con.prepareStatement("select * from disease_specialist_map,disease,specialist where specialist.name='"+specialist+"' and disease.disease_id=disease_specialist_map.disease_id and specialist.specialist_id=disease_specialist_map.specialist_id;");
+            ResultSet rs = pstmt.executeQuery();
+            lst = new ArrayList<>();
+            //rs.first();
+            int i=0;
+            while (rs.next()) {
+                objBean = rs.getString("disease");
+                lst.add(objBean);
+                i++;
+            }
+            System.out.println("rows retrieved : "+i + lst.toString());
+        } catch (Exception e) {
+            System.out.println("in getDiseaseForSpecialist()" + e);
         }
         return lst;
     }

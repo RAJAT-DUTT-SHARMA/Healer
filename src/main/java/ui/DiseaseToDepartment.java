@@ -99,7 +99,7 @@ public class DiseaseToDepartment extends JFrame {
 
 		RuleRunningFunction.runner();
 
-		HashMap<String, String> abc = HelperfunctionForDepartment.getDiseaseToDepartment();
+		HashMap<String, ArrayList<String>> abc = HelperfunctionForDepartment.getDiseaseToDepartment();
 
 		if (!abc.isEmpty())
 			System.out.println("done");
