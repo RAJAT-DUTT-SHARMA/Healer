@@ -2,8 +2,8 @@
 package rules
 
 //list any import classes here.
-import beans.DiseasePojo;
-import static services.HelperFunctions.addDisease;
+import beans.SymptomPojo;
+import static services.HelperFunctions.addSymptom;
 
 //declare any global variables here
 

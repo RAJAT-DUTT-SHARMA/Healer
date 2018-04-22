@@ -9,8 +9,8 @@ package properties;
  * @author Er.RajatDS
  */
 public class Properties {
-	public static final String user="sandeep";
-	public static final String password="mysqlsandeep";
+	public static final String user="root";
+	public static final String password="";
 	public static final String DB_NAME="healer";
 	public static final String drlFileSympDis="/rules/symptom_disease_map.drl";
 	public static final String drlFileDisSymp="/rules/disease_symptom_map.drl";

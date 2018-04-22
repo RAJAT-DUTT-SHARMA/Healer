@@ -15,6 +15,7 @@ import properties.Properties;
 public class RuleGenerator {
 
 	private static final String method = "addDisease";
+	private static final String method7 = "addSymptom";
 	private static final String method2 = "addDepartmentForDisease";
 	private static final String method3 = "addDiseaseForDepartment";
 	private static final String method4 = "addTestForDisease";
@@ -127,18 +128,31 @@ public class RuleGenerator {
 		DBOperations ops = new DBOperations();
 		ArrayList<String> listDiseases = ops.getAllDiseases();
 		ArrayList<String> listSymptoms;
+		ArrayList<String[]> actionParams;
 		ArrayList<Condition> listConditions;
 		String rule;
+
 		for (String disease : listDiseases) {
+			actionParams = new ArrayList<>();
 			listSymptoms = ops.getRelatedSymptom(disease);
+			System.out.println(listSymptoms.toString());
+			for (String i : listSymptoms) {
+				String[] params = new String[2];
+				params[0] = disease;
+				params[1] = i;
+				actionParams.add(params);
+			}
 
 			Condition condition = new Condition();
 			condition.setField("disease");
 			condition.setOperator(Operator.EQUAL_TO);
 			condition.setValue(disease);
+
 			listConditions = new ArrayList<>();
 			listConditions.add(condition);
-			rule = ruleGenerator(disease, DiseasePojo.class.getName(), listConditions, listSymptoms, method);
+
+			rule = ruleGenerator2("ToSymptom"+disease, DiseasePojo.class.getName(), listConditions,
+					actionParams, method7);
 
 			writeToDRL(rule, Properties.drlFileDisSymp);
 		}
