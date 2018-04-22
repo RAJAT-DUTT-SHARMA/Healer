@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `healer` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `healer`;
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.21, for Linux (x86_64)
 --
 -- Host: localhost    Database: healer
 -- ------------------------------------------------------
--- Server version	5.7.21-log
+-- Server version	5.7.21-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,6 +14,14 @@ USE `healer`;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Current Database: `healer`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `healer` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+USE `healer`;
 
 --
 -- Table structure for table `disease`
@@ -99,6 +105,35 @@ INSERT INTO `disease_to_test_map` VALUES (1,1,1),(2,1,2),(3,1,3),(4,2,1),(5,2,2)
 UNLOCK TABLES;
 
 --
+-- Table structure for table `disease_treatment_map`
+--
+
+DROP TABLE IF EXISTS `disease_treatment_map`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `disease_treatment_map` (
+  `map_id` int(11) NOT NULL AUTO_INCREMENT,
+  `disease_id` int(11) DEFAULT NULL,
+  `treatment_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`map_id`),
+  KEY `treatment_id` (`treatment_id`),
+  KEY `disease_id` (`disease_id`),
+  CONSTRAINT `disease_treatment_map_ibfk_1` FOREIGN KEY (`treatment_id`) REFERENCES `treatment` (`treatment_id`),
+  CONSTRAINT `disease_treatment_map_ibfk_2` FOREIGN KEY (`disease_id`) REFERENCES `disease` (`disease_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `disease_treatment_map`
+--
+
+LOCK TABLES `disease_treatment_map` WRITE;
+/*!40000 ALTER TABLE `disease_treatment_map` DISABLE KEYS */;
+INSERT INTO `disease_treatment_map` VALUES (1,1,1),(2,1,2),(3,2,3),(4,2,4),(5,3,5),(6,3,6),(7,3,7),(8,3,8),(9,3,9),(10,4,10),(11,4,11),(12,4,8),(13,5,12),(14,5,13),(15,5,8),(16,5,2);
+/*!40000 ALTER TABLE `disease_treatment_map` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `specialist`
 --
 
@@ -171,7 +206,7 @@ CREATE TABLE `symptom_disease_map` (
 
 LOCK TABLES `symptom_disease_map` WRITE;
 /*!40000 ALTER TABLE `symptom_disease_map` DISABLE KEYS */;
-INSERT INTO `symptom_disease_map` VALUES (1,9,3),(2,14,3),(3,1,1),(4,2,1),(5,3,1),(6,4,1),(7,5,1),(8,6,1),(9,7,2),(10,7,3),(11,7,5),(12,8,3),(13,8,4),(14,9,3),(15,9,4),(16,10,4),(17,10,3),(18,11,4),(19,12,5),(20,13,5),(21,14,3),(22,15,2),(23,16,5),(24,17,5);
+INSERT INTO `symptom_disease_map` VALUES (1,9,3),(2,14,3),(3,1,1),(4,2,1),(5,3,1),(6,4,1),(7,5,1),(8,6,1),(9,7,2),(10,7,3),(11,7,5),(12,8,3),(13,8,4),(15,9,4),(16,10,4),(17,10,3),(18,11,4),(19,12,5),(20,13,5),(22,15,2),(23,16,5),(24,17,5);
 /*!40000 ALTER TABLE `symptom_disease_map` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,6 +233,31 @@ LOCK TABLES `tests` WRITE;
 INSERT INTO `tests` VALUES (1,'blood test'),(2,'urine test'),(3,'blood pressure'),(4,'vitamin tests'),(5,'stool culture'),(6,'throat culture');
 /*!40000 ALTER TABLE `tests` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `treatment`
+--
+
+DROP TABLE IF EXISTS `treatment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `treatment` (
+  `treatment_id` int(11) NOT NULL,
+  `treatment` text NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`treatment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `treatment`
+--
+
+LOCK TABLES `treatment` WRITE;
+/*!40000 ALTER TABLE `treatment` DISABLE KEYS */;
+INSERT INTO `treatment` VALUES (1,'Ors','Replenish fluids and electrolytes using oral rehydration slution(ors).'),(2,'Drink sports drink','Drink more water ,sports drink or other liquids.'),(3,'No treatment','In healthy children, chickenpox typically requires no medical treatment. Just use an antihistamine to relieve itching. But for the most part, the disease is allowed to run its course.'),(4,'Antiviral drug','Take antiviral drug such as acyclovir (Zovirax) or another drug called immune globulin intravenous (Privigen).'),(5,'Post-exposure vaccination','Nonimmunized people, including infants, take the measles vaccination within 72 hours of exposure to the measles virus to provide protection against the disease.'),(6,'Immune serum globulin','Pregnant women, infants and people with weakened immune systems who are exposed to the virus may receive an injection of proteins (antibodies) called immune serum globulin. When given within six days of exposure to the virus, these antibodies can prevent measles or make symptoms less severe.'),(7,'Fever reducers','Take medications such as acetaminophen (Tylenol, others), ibuprofen (Advil, Motrin, others) or naproxen (Aleve) to help relieve the fever that accompanies measles.'),(8,'Antibiotics','If a bacterial infection, such as pneumonia or an ear infection, develops while you or your child has measles, use an antibiotic.'),(9,'Vitamin A','People with low levels of vitamin A are more likely to have a more severe case of measles. Taking vitamin A may lessen the severity of the measles. It\'s generally given as a large dose of 200,000 international units (IU) for two days.'),(10,'Humidity','It helps break up the thick mucus. Use a humidifier, or get some steam going in the bath or shower. You could heat up a pan of water and close up the room or cover yourself and the pan under a sheet.'),(11,'Small meals','Take small meals, You’re less likely to vomit them up.'),(12,'Let your stomach settle','Stop eating and drinking for a few hours.'),(13,'Rest','The illness and dehydration can weaken and tire you so take some quality rest.');
+/*!40000 ALTER TABLE `treatment` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -208,4 +268,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-19 11:04:41
+-- Dump completed on 2018-04-21 13:12:24

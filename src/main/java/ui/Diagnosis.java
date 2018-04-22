@@ -45,9 +45,7 @@ import beans.Person;
 import beans.SymptomPojo;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
+
 
 import main.Main;
 

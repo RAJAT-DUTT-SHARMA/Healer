@@ -9,6 +9,7 @@ import beans.DiseasePojo;
 import beans.Operator;
 import beans.SpecialistPojo;
 import beans.SymptomPojo;
+import beans.TreatmentPojo;
 import properties.Properties;
 
 public class RuleGenerator {
@@ -17,6 +18,9 @@ public class RuleGenerator {
 	private static final String method2 = "addDepartmentForDisease";
 	private static final String method3 = "addDiseaseForDepartment";
 	private static final String method4 = "addTestForDisease";
+	
+	private static final String method5 = "addTreatmentForDisease";
+	private static final String method6 = "addDiseaseForTreatment";
 
 	/*
 	 * public static void main(String []args) { //for testing only
@@ -266,4 +270,62 @@ public class RuleGenerator {
 		}
 	}
 	
+	public static void generateDiseaseToTreatmentRules() {
+		DBOperations ops = new DBOperations();
+		ArrayList<String> listDiseases = ops.getAllDiseases();
+		ArrayList<String> listTreatments;
+		ArrayList<Condition> listConditions;
+		ArrayList<String[]> actionParams;
+		String rule;
+		for (String disease : listDiseases) {
+			actionParams = new ArrayList<>();
+			listTreatments = ops.getTreatmentForDisease(disease);
+			
+			for (String treatment : listTreatments) {
+				String[] params = new String[2];
+				params[0] = disease;
+				params[1] = treatment;
+				actionParams.add(params);
+			}
+			
+			Condition condition = new Condition();
+			condition.setField("disease");
+			condition.setOperator(Operator.EQUAL_TO);
+			condition.setValue(disease);
+			listConditions = new ArrayList<>();
+			listConditions.add(condition);
+			rule = ruleGenerator2(disease+"_DISEASE",
+					              DiseasePojo.class.getName(),
+					              listConditions, 
+					              actionParams, 
+					              method5);
+
+			writeToDRL(rule, Properties.drlFileDisTrtmnt);
+		}
+	}
+	
+	public static void generateTreatmentToDiseaseRules() {
+		DBOperations ops = new DBOperations();
+		ArrayList<String> listTreatments = ops.getAllTreatments();
+		ArrayList<String> listDiseases;
+		ArrayList<Condition> listConditions;
+		String rule;
+		for (String treatment : listTreatments) {
+			listDiseases = ops.getDiseaseForTreatment(treatment);
+			
+			Condition condition = new Condition();
+			condition.setField("treatment");
+			condition.setOperator(Operator.EQUAL_TO);
+			condition.setValue(treatment);
+			listConditions = new ArrayList<>();
+			listConditions.add(condition);
+			rule = ruleGenerator(treatment+"_TREATMENT",
+					              TreatmentPojo.class.getName(),
+					              listConditions, 
+					              listDiseases, 
+					              method6);
+
+			writeToDRL(rule, Properties.drlFileTrtmntDis);
+		}
+	}
 }

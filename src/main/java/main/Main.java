@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import services.DBOperations;
 import services.HelperFunctions;
 import services.HelperfunctionForDepartment;
+import services.HelperfunctionForTreatment;
+import services.HelperfunctionForDisease;
 import services.RuleGenerator;
 import ui.Diagnosis;
 import ui.Main_ui;
@@ -25,6 +27,12 @@ public class Main {
 					RuleGenerator.generateSpecialistToDisease();
 					RuleGenerator.generateSymtomToDiseaseRules();
 					HelperFunctions.initializeMap();
+					
+					RuleGenerator.generateDiseaseToTreatmentRules();
+					RuleGenerator.generateTreatmentToDiseaseRules();
+					HelperfunctionForTreatment.initializeMap();
+					HelperfunctionForDisease.initializeMap();
+					
 					Main_ui main_ui = new Main_ui();
 					main_ui.setVisible(true);
 

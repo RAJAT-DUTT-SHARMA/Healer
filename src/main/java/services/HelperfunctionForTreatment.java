@@ -11,7 +11,7 @@ public class HelperfunctionForTreatment {
 	}
 
 	public static void addTreatmentForDisease(String disease, String treatment) {
-		System.out.println("addTreatmentFordiseae"+treatment+" "+disease);
+		System.out.println("addTreatmentForDisease "+treatment+" "+disease);
 		
 		if (!DiseaseToTreatment.containsKey(disease)) {
 			ArrayList<String> a = new ArrayList<String>();

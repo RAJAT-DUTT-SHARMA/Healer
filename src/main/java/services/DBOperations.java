@@ -227,5 +227,83 @@ public class DBOperations {
         return lst;
     }
     
+    public ArrayList<String> getAllTreatments() {
+        String objBean;
+        ArrayList<String> lst = null;
+        
+        try (Connection con = ConnectDB.connect()) {
+        	PreparedStatement pstmt = con.prepareStatement("select * from treatment;");
+            ResultSet rs = pstmt.executeQuery();
+            lst = new ArrayList<>();
+            int i=0;
+            while (rs.next()) {
+                objBean = rs.getString("treatment");
+                lst.add(objBean);
+                i++;
+            }
+            System.out.println("rows retrieved : "+i );
+        } catch (Exception e) {
+            System.out.println("in getAllTreatments()" + e);
+        }
+        return lst;
+    }
+    
+    public ArrayList<String> getTreatmentForDisease(String disease) {
+        String objBean;
+        ArrayList<String> lst = null;
+        
+        try (Connection con = ConnectDB.connect()) {
+        	String query="SELECT treatment,description "+
+        				 "FROM treatment, "+
+        				 	   "("+
+        				 	      "SELECT treatment_id "+
+        				 	      "FROM disease,disease_treatment_map "+
+        				 	      "WHERE (disease.disease_id = disease_treatment_map.disease_id) AND  disease.disease='"+disease+"') AS t_id " +
+        			     "WHERE t_id.treatment_id=treatment.treatment_id;";
+        	PreparedStatement pstmt = con.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            lst = new ArrayList<>();
+            int i=0;
+            while (rs.next()) {
+                objBean = rs.getString("treatment");
+                objBean = objBean + ": " + rs.getString("description");
+                lst.add(objBean);
+                i++;
+            }
+            System.out.println("rows retrieved : "+i );
+        } catch (Exception e) {
+            System.out.println("in getTreatmentForDisease()" + e);
+        }
+        return lst;
+    }
+    
+    public ArrayList<String> getDiseaseForTreatment(String treatment) {
+        String objBean;
+        ArrayList<String> lst = null;
+        
+        try (Connection con = ConnectDB.connect()) {
+        	String query="SELECT disease "+
+        				 "FROM disease, "+
+        				 	   "("+
+        				 	      "SELECT disease_id "+
+        				 	      "FROM treatment,disease_treatment_map "+
+        				 	      "WHERE (treatment.treatment_id = disease_treatment_map.treatment_id) AND  treatment.treatment='"+treatment+"') AS d_id " +
+        			     "WHERE d_id.disease_id=disease.disease_id;";
+        	PreparedStatement pstmt = con.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            lst = new ArrayList<>();
+            int i=0;
+            while (rs.next()) {
+                objBean = rs.getString("disease");
+                lst.add(objBean);
+                i++;
+            }
+            System.out.println("rows retrieved : "+i );
+        } catch (Exception e) {
+            System.out.println("in getDiseaseForTreatment()" + e);
+        }
+        return lst;
+    }
     
 }
+

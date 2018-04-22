@@ -1,0 +1,9 @@
+//created on: 21 Apr, 2018
+package rules
+
+//list any import classes here.
+import beans.TreatmentPojo;
+import static services.HelperfunctionForDisease.addDiseaseForTreatment;
+
+
+//declare any global variables here
