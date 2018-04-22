@@ -109,7 +109,7 @@ public class Main_ui extends JFrame {
 //		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Search through Disease", null, panel_1, null);
 		
-		JPanel panel_3 = new JPanel();
+		JPanel panel_3 = new SearchThroughSpecialist();
 		tabbedPane.addTab("Search through Specialist", null, panel_3, null);
 	}
 }
