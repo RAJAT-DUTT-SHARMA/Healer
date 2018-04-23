@@ -2,59 +2,37 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.LayoutManager;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.ListIterator;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import org.kie.api.KieServices;
-import org.kie.api.runtime.KieContainer;
-import org.kie.api.runtime.KieSession;
-
+import beans.DiseaseSymptomConfidenceModel;
+import beans.SymptomPojo;
 import services.DBOperations;
 import services.HelperFunctionForTest;
 import services.HelperFunctions;
 import services.HelperfunctionForDepartment;
 import services.HelperfunctionForTreatment;
-import services.RuleGenerator;
 import services.RuleRunningFunction;
-import beans.DiseaseSymptomConfidenceModel;
-import beans.Person;
-import beans.SymptomPojo;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-
-import main.Main;
-
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import java.awt.BorderLayout;
-import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
-import javax.swing.JScrollBar;
 
 public class Diagnosis extends JPanel {
 

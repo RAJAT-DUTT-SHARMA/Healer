@@ -1,8 +1,135 @@
 //created on: 8 Apr, 2018
-package symptoms_map
+package rules
 
 //list any import classes here.
-import test.Person; 
-
+import beans.SymptomPojo;
+import static services.HelperFunctions.addDisease
 
 //declare any global variables here
+
+
+
+
+rule "Extreme Thirst"
+when
+beans.SymptomPojo( symptom == "Extreme Thirst"  ) 
+then
+addDisease("dehydration");
+end
+
+rule "Less frequent urination"
+when
+beans.SymptomPojo( symptom == "Less frequent urination"  ) 
+then
+addDisease("dehydration");
+end
+
+rule "dark colored urine"
+when
+beans.SymptomPojo( symptom == "dark colored urine"  ) 
+then
+addDisease("dehydration");
+end
+
+rule "fatigue"
+when
+beans.SymptomPojo( symptom == "fatigue"  ) 
+then
+addDisease("dehydration");
+end
+
+rule "dizziness"
+when
+beans.SymptomPojo( symptom == "dizziness"  ) 
+then
+addDisease("dehydration");
+end
+
+rule "confusion"
+when
+beans.SymptomPojo( symptom == "confusion"  ) 
+then
+addDisease("dehydration");
+end
+
+rule "fever"
+when
+beans.SymptomPojo( symptom == "fever"  ) 
+then
+addDisease("chicken pox");
+addDisease("measles");
+addDisease("food poisoning");
+end
+
+rule "cough"
+when
+beans.SymptomPojo( symptom == "cough"  ) 
+then
+addDisease("measles");
+addDisease("whooping cough");
+end
+
+rule "runny nose"
+when
+beans.SymptomPojo( symptom == "runny nose"  ) 
+then
+addDisease("measles");
+addDisease("whooping cough");
+end
+
+rule "vomiting"
+when
+beans.SymptomPojo( symptom == "vomiting"  ) 
+then
+addDisease("whooping cough");
+addDisease("measles");
+end
+
+rule "breathlessness"
+when
+beans.SymptomPojo( symptom == "breathlessness"  ) 
+then
+addDisease("whooping cough");
+end
+
+rule "nausea"
+when
+beans.SymptomPojo( symptom == "nausea"  ) 
+then
+addDisease("food poisoning");
+end
+
+rule "diarrhea"
+when
+beans.SymptomPojo( symptom == "diarrhea"  ) 
+then
+addDisease("food poisoning");
+end
+
+rule "runny eyes"
+when
+beans.SymptomPojo( symptom == "runny eyes"  ) 
+then
+addDisease("measles");
+end
+
+rule "spots with blister"
+when
+beans.SymptomPojo( symptom == "spots with blister"  ) 
+then
+addDisease("chicken pox");
+end
+
+rule "cramps"
+when
+beans.SymptomPojo( symptom == "cramps"  ) 
+then
+addDisease("food poisoning");
+end
+
+rule "abdominal pain"
+when
+beans.SymptomPojo( symptom == "abdominal pain"  ) 
+then
+addDisease("food poisoning");
+end

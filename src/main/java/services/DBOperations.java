@@ -305,5 +305,240 @@ public class DBOperations {
         return lst;
     }
     
+    public int addDisease(String disease) {
+    	int id=-1;
+    
+    	try (Connection con = ConnectDB.connect()) {
+        	
+    		String query="insert into disease (disease) values(\""+disease+"\");";
+        	PreparedStatement pstmt = con.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            
+            query="select count(*) from disease";
+            pstmt=con.prepareStatement(query);
+            rs=pstmt.executeQuery();
+            rs.next();
+            id=rs.getInt(1);
+            
+            System.out.println("id  : "+id );
+        } catch (Exception e) {
+            System.out.println("in addDisease()" + e);
+        }
+    	return id;
+    }
+    
+    public int addSymptom(String symptom) {
+    	int id=-1;
+    
+    	try (Connection con = ConnectDB.connect()) {
+        	
+    		String query="insert into symptom (symptom) values(\""+symptom+"\");";
+        	PreparedStatement pstmt = con.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            
+            query="select count(*) from symptom";
+            pstmt=con.prepareStatement(query);
+            rs=pstmt.executeQuery();
+            rs.next();
+            id=rs.getInt(1);
+            
+            System.out.println("id  : "+id );
+        } catch (Exception e) {
+            System.out.println("in addSymptom()" + e);
+        }
+    	return id;
+    }
+    public int addTest(String test) {
+    	int id=-1;
+    
+    	try (Connection con = ConnectDB.connect()) {
+        	
+    		String query="insert into tests (test) values(\""+test+"\");";
+        	PreparedStatement pstmt = con.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            
+            query="select count(*) from tests";
+            pstmt=con.prepareStatement(query);
+            rs=pstmt.executeQuery();
+            rs.next();
+            id=rs.getInt(1);
+            
+            System.out.println("id  : "+id );
+        } catch (Exception e) {
+            System.out.println("in addTest()" + e);
+        }
+    	return id;
+    }
+    public int addSpecialist(String specialist) {
+    	int id=-1;
+    
+    	try (Connection con = ConnectDB.connect()) {
+        	
+    		String query="insert into specialist (name) values(\""+specialist+"\");";
+        	PreparedStatement pstmt = con.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            
+            query="select count(*) from specialist";
+            pstmt=con.prepareStatement(query);
+            rs=pstmt.executeQuery();
+            rs.next();
+            id=rs.getInt(1);
+            
+            System.out.println("id  : "+id );
+        } catch (Exception e) {
+            System.out.println("in addSpecialist()" + e);
+        }
+    	return id;
+    }
+    public int addTreatment(String name,String description) {
+    	int id=-1;
+    
+    	try (Connection con = ConnectDB.connect()) {
+        	
+    		String query="insert into treatment (treatment,description) values(\""+name+"\",\""+description+"\");";
+        	PreparedStatement pstmt = con.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            
+            query="select count(*) from treatment";
+            pstmt=con.prepareStatement(query);
+            rs=pstmt.executeQuery();
+            rs.next();
+            id=rs.getInt(1);
+            
+            System.out.println("id  : "+id );
+        } catch (Exception e) {
+            System.out.println("in addTreatment()" + e);
+        }
+    	return id;
+    }
+    
+    public void addDiseaseSymptomMap(int dis,int sym) {
+    
+    	try (Connection con = ConnectDB.connect()) {
+        	
+    		String query="insert into symptom_disease_map (symptom_id,disease_id) values("+sym+","+dis+");";
+        	PreparedStatement pstmt = con.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            
+        } catch (Exception e) {
+            System.out.println("in addTreatment()" + e);
+        }
+    	
+    }
+    
+    public void addDiseaseTreatmentMap(int dis,int treat) {
+        
+    	try (Connection con = ConnectDB.connect()) {
+        	
+    		String query="insert into disease_treatment_map (disease_id,treatment_id) values("+dis+","+treat+");";
+        	PreparedStatement pstmt = con.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+        } catch (Exception e) {
+            System.out.println("in addTreatment()" + e);
+        }
+    	
+    }
+    
+public void addDiseaseTestMap(int dis,int test) {
+        
+    	try (Connection con = ConnectDB.connect()) {
+        	
+    		String query="insert into disease_to_test_map (disease_id,test_id) values("+dis+","+test+");";
+        	PreparedStatement pstmt = con.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+        } catch (Exception e) {
+            System.out.println("in addTreatment()" + e);
+        }
+    	
+    }
+
+public void addDiseaseSpecialisttMap(int dis,int spid) {
+    
+	try (Connection con = ConnectDB.connect()) {
+    	
+		String query="insert into disease_specialist_map (disease_id,specialist_id) values("+dis+","+spid+");";
+    	PreparedStatement pstmt = con.prepareStatement(query);
+        ResultSet rs = pstmt.executeQuery();
+    } catch (Exception e) {
+        System.out.println("in addTreatment()" + e);
+    }
+	
+}
+
+
+public int getDiseaseId(String disease) {
+	int id=-1;
+	try (Connection con = ConnectDB.connect()) {
+    	
+		String query="select disease_id from disease where disease=\""+disease+"\";";
+    	PreparedStatement pstmt = con.prepareStatement(query);
+        ResultSet rs = pstmt.executeQuery();
+        rs.next();
+        id=rs.getInt(1);
+    } catch (Exception e) {
+        System.out.println("in addTreatment()" + e);
+    }
+	return id;
+}
+
+public int getSymptomId(String symptom) {	
+	int id=-1;
+	try (Connection con = ConnectDB.connect()) {
+    	
+		String query="select symp_id from symptom where symptom=\""+symptom+"\";";
+    	PreparedStatement pstmt = con.prepareStatement(query);
+        ResultSet rs = pstmt.executeQuery();
+        rs.next();
+        id=rs.getInt(1);
+    } catch (Exception e) {
+        System.out.println("in addTreatment()" + e);
+    }
+	return id;
+	
+}public int getSpecialistId(String specialist) {
+	int id=-1;
+	try (Connection con = ConnectDB.connect()) {
+    	
+		String query="select specialist_id from specialist where name=\""+specialist+"\";";
+    	PreparedStatement pstmt = con.prepareStatement(query);
+        ResultSet rs = pstmt.executeQuery();
+        rs.next();
+        id=rs.getInt(1);
+    } catch (Exception e) {
+        System.out.println("in addTreatment()" + e);
+    }
+	return id;
+}public int getTreatmentId(String treatment) {
+	int id=-1;
+	try (Connection con = ConnectDB.connect()) {
+    	
+		String query="select treatment_id from treatment where treatment=\""+treatment+"\";";
+    	PreparedStatement pstmt = con.prepareStatement(query);
+        ResultSet rs = pstmt.executeQuery();
+        rs.next();
+        id=rs.getInt(1);
+    } catch (Exception e) {
+        System.out.println("in addTreatment()" + e);
+    }
+	return id;
+}
+public int getTestId(String test) {
+	int id=-1;
+	try (Connection con = ConnectDB.connect()) {
+    	
+		String query="select test_id from tests where test=\""+test+"\";";
+    	PreparedStatement pstmt = con.prepareStatement(query);
+        ResultSet rs = pstmt.executeQuery();
+        rs.next();
+        id=rs.getInt(1);
+    } catch (Exception e) {
+        System.out.println("in addTreatment()" + e);
+    }
+	return id;
+}
+    
+    
+    
+    
 }
 

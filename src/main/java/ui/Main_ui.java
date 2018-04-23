@@ -111,5 +111,9 @@ public class Main_ui extends JFrame {
 		
 		JPanel panel_3 = new SearchThroughSpecialist();
 		tabbedPane.addTab("Search through Specialist", null, panel_3, null);
+	
+		JPanel panel_4 = new AddKnowledge();
+		tabbedPane.addTab("Add Knowledge", null, panel_4, null);
+	
 	}
 }
