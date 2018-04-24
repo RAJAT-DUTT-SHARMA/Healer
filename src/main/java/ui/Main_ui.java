@@ -115,5 +115,9 @@ public class Main_ui extends JFrame {
 		JPanel panel_4 = new AddKnowledge();
 		tabbedPane.addTab("Add Knowledge", null, panel_4, null);
 	
+		JPanel panel_5 = new PatientHistory();
+		tabbedPane.addTab("Get History", null, panel_5, null);
+	
+		
 	}
 }

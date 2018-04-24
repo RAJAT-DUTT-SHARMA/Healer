@@ -1,0 +1,58 @@
+//created on: Apr 19, 2018
+package rule
+
+//list any import classes here.
+import beans.Person;
+import static services.HelperfunctionForDate.addDateForPerson;
+
+
+
+//declare any global variables here
+
+rule "001"
+
+    when
+      	in: Person(name == "RAM")
+    then
+        addDateForPerson("RAM","Address - 26/c hosur road","Disease - Headache","previous consulted date - 01/01/1996","Pulse rate - 90/120","previously consulted to - Dr. B D Mishra");
+end
+
+rule "002"
+
+    when
+      	in: Person(name == "SHYAM")
+    then
+        addDateForPerson("SHYAM","Address - 26/c hosur road","Disease - Headache","previous consulted date - 01/01/1996","Pulse rate - 90/120","previously consulted to - Dr. B D Mishra");
+end
+
+rule "003"
+
+    when
+      	in: Person(name == "SOHAN")
+    then
+        addDateForPerson("SOHAN","Address - 26/c hosur road","Disease - Headache","previous consulted date - 01/01/1996","Pulse rate - 90/120","previously consulted to - Dr. B D Mishra");
+end
+
+rule "004"
+
+    when
+      	in: Person(name == "KIRTI")
+    then
+        addDateForPerson("KIRTI","Address - 26/c hosur road","Disease - Headache","previous consulted date - 01/01/1996","Pulse rate - 90/120","previously consulted to - Dr. B D Mishra");
+end
+
+rule "005"
+
+    when
+      	in: Person(name == "DINESH")
+    then
+        addDateForPerson("DINESH","Address - 26/c hosur road","Disease - Headache","previous consulted date - 01/01/1996","Pulse rate - 90/120","previously consulted to - Dr. B D Mishra");
+end
+
+rule "006"
+
+    when
+      	in: Person(name == "AMIT")
+    then
+        addDateForPerson("AMIT","Address - 26/c hosur road","Disease - Headache","previous consulted date - 01/01/1996","Pulse rate - 90/120","previously consulted to - Dr. B D Mishra");
+end

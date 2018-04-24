@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 
 import services.DBOperations;
 import services.HelperFunctions;
+import services.HelperfunctionForDate;
 import services.HelperfunctionForDepartment;
 import services.HelperfunctionForTreatment;
 import services.HelperfunctionForDisease;
@@ -32,6 +33,8 @@ public class Main {
 					RuleGenerator.generateTreatmentToDiseaseRules();
 					HelperfunctionForTreatment.initializeMap();
 					HelperfunctionForDisease.initializeMap();
+					HelperfunctionForDate.initializeMap();
+					
 					
 					Main_ui main_ui = new Main_ui();
 					main_ui.setVisible(true);
