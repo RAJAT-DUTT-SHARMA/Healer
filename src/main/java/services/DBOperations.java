@@ -312,13 +312,13 @@ public class DBOperations {
         	
     		String query="insert into disease (disease) values(\""+disease+"\");";
         	PreparedStatement pstmt = con.prepareStatement(query);
-            ResultSet rs = pstmt.executeQuery();
+            int rs = pstmt.executeUpdate();
             
             query="select count(*) from disease";
             pstmt=con.prepareStatement(query);
-            rs=pstmt.executeQuery();
-            rs.next();
-            id=rs.getInt(1);
+            ResultSet rst=pstmt.executeQuery();
+            rst.next();
+            id=rst.getInt(1);
             
             System.out.println("id  : "+id );
         } catch (Exception e) {
@@ -334,13 +334,13 @@ public class DBOperations {
         	
     		String query="insert into symptom (symptom) values(\""+symptom+"\");";
         	PreparedStatement pstmt = con.prepareStatement(query);
-            ResultSet rs = pstmt.executeQuery();
+            int rs = pstmt.executeUpdate();
             
             query="select count(*) from symptom";
             pstmt=con.prepareStatement(query);
-            rs=pstmt.executeQuery();
-            rs.next();
-            id=rs.getInt(1);
+            ResultSet rst=pstmt.executeQuery();
+            rst.next();
+            id=rst.getInt(1);
             
             System.out.println("id  : "+id );
         } catch (Exception e) {
@@ -355,11 +355,11 @@ public class DBOperations {
         	
     		String query="insert into tests (test) values(\""+test+"\");";
         	PreparedStatement pstmt = con.prepareStatement(query);
-            ResultSet rs = pstmt.executeQuery();
+            pstmt.executeUpdate();
             
             query="select count(*) from tests";
             pstmt=con.prepareStatement(query);
-            rs=pstmt.executeQuery();
+            ResultSet rs=pstmt.executeQuery();
             rs.next();
             id=rs.getInt(1);
             
@@ -376,7 +376,8 @@ public class DBOperations {
         	
     		String query="insert into specialist (name) values(\""+specialist+"\");";
         	PreparedStatement pstmt = con.prepareStatement(query);
-            ResultSet rs = pstmt.executeQuery();
+            ResultSet rs ; 
+            pstmt.executeUpdate();
             
             query="select count(*) from specialist";
             pstmt=con.prepareStatement(query);
@@ -397,7 +398,8 @@ public class DBOperations {
         	
     		String query="insert into treatment (treatment,description) values(\""+name+"\",\""+description+"\");";
         	PreparedStatement pstmt = con.prepareStatement(query);
-            ResultSet rs = pstmt.executeQuery();
+            ResultSet rs ;
+            pstmt.executeUpdate();
             
             query="select count(*) from treatment";
             pstmt=con.prepareStatement(query);
@@ -418,7 +420,7 @@ public class DBOperations {
         	
     		String query="insert into symptom_disease_map (symptom_id,disease_id) values("+sym+","+dis+");";
         	PreparedStatement pstmt = con.prepareStatement(query);
-            ResultSet rs = pstmt.executeQuery();
+            pstmt.executeUpdate();
             
         } catch (Exception e) {
             System.out.println("in addTreatment()" + e);
@@ -432,7 +434,7 @@ public class DBOperations {
         	
     		String query="insert into disease_treatment_map (disease_id,treatment_id) values("+dis+","+treat+");";
         	PreparedStatement pstmt = con.prepareStatement(query);
-            ResultSet rs = pstmt.executeQuery();
+            pstmt.executeUpdate();
         } catch (Exception e) {
             System.out.println("in addTreatment()" + e);
         }
@@ -445,7 +447,7 @@ public void addDiseaseTestMap(int dis,int test) {
         	
     		String query="insert into disease_to_test_map (disease_id,test_id) values("+dis+","+test+");";
         	PreparedStatement pstmt = con.prepareStatement(query);
-            ResultSet rs = pstmt.executeQuery();
+            pstmt.executeUpdate();
         } catch (Exception e) {
             System.out.println("in addTreatment()" + e);
         }
@@ -458,7 +460,7 @@ public void addDiseaseSpecialisttMap(int dis,int spid) {
     	
 		String query="insert into disease_specialist_map (disease_id,specialist_id) values("+dis+","+spid+");";
     	PreparedStatement pstmt = con.prepareStatement(query);
-        ResultSet rs = pstmt.executeQuery();
+        pstmt.executeUpdate();
     } catch (Exception e) {
         System.out.println("in addTreatment()" + e);
     }

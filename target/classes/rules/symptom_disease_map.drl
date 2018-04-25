@@ -75,6 +75,7 @@ beans.SymptomPojo( symptom == "runny nose"  )
 then
 addDisease("measles");
 addDisease("whooping cough");
+addDisease("common cold");
 end
 
 rule "vomiting"

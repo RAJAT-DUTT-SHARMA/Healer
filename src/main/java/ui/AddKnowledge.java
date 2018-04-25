@@ -446,7 +446,7 @@ public class AddKnowledge extends JPanel{
 					}
 					
 					//add specialist knowledge
-					if(comboBox.getSelectedIndex()==0) {
+					if(comboBox_4.getSelectedIndex()==0) {
 						d=textField_4.getText();
 						specialist_id=ops.addSpecialist(d);
 					}else {
